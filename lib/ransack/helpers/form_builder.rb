@@ -1,24 +1,24 @@
 require 'action_view'
 
-module ActionView::Helpers::Tags
-  # TODO: Find a better way to solve this issue!
-  # This patch is needed since this Rails commit:
-  # https://github.com/rails/rails/commit/c1a118a
-  class Base
-    private
-    if defined? ::ActiveRecord
-      if ::ActiveRecord::VERSION::STRING < '5.2'
-        def value(object)
-          object.send @method_name if object # use send instead of public_send
-        end
-      else # rails/rails#29791
-        def value
-          @object.send @method_name if @object
-        end
-      end
-    end
-  end
-end
+# module ActionView::Helpers::Tags
+#   # TODO: Find a better way to solve this issue!
+#   # This patch is needed since this Rails commit:
+#   # https://github.com/rails/rails/commit/c1a118a
+#   class Base
+#     private
+#     if defined? ::ActiveRecord
+#       if ::ActiveRecord::VERSION::STRING < '5.2'
+#         def value(object)
+#           object.send @method_name if object # use send instead of public_send
+#         end
+#       else # rails/rails#29791
+#         def value
+#           @object.send @method_name if @object
+#         end
+#       end
+#     end
+#   end
+# end
 
 RANSACK_FORM_BUILDER = 'RANSACK_FORM_BUILDER'.freeze
 
